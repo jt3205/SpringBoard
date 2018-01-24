@@ -1,10 +1,13 @@
 package net.jtorol.domain;
 
+import java.util.Date;
+
 public class UserVO {
 	private String uid;
 	private String upw;
 	private String uname;
 	private int upoint;
+	private Date regdate;
 	
 	public String getUid() {
 		return uid;
@@ -30,9 +33,16 @@ public class UserVO {
 	public void setUpoint(int upoint) {
 		this.upoint = upoint;
 	}
-
+	public Date getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
+	
 	@Override
 	public String toString() {
-		return "UserVO [uid=" + uid + ", upw=" + upw + ", uname=" + uname + ", upoint=" + upoint + "]";
+		return "UserVO [uid=" + uid + ", upw=" + upw + ", uname=" + uname + ", upoint=" + upoint + ", regdate=" + regdate + "]";
 	}
+	
 }

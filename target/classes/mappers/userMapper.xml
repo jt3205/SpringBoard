@@ -9,4 +9,12 @@
 	<insert id="insertUser">
 		Insert into tbl_user (uid, upw, uname) VALUES (#{uid}, #{upw}, #{uname}) 
 	</insert>
+	
+	<select id="selectUser" resultType="net.jtorol.domain.UserVO">
+		select * from tbl_user where uid = #{uid}
+	</select>
+	
+	<select id="selectUserWithPW" resultType="net.jtorol.domain.UserVO">
+		select * from tbl_user where uid = #{uid} and upw = #{upw}        
+	</select>
 </mapper>

@@ -25,4 +25,5 @@
 	
 	
 	<context:component-scan base-package="net.jtorol.dao"></context:component-scan>
+	<context:component-scan base-package="net.jtorol.service"></context:component-scan>
 </beans>
