@@ -16,6 +16,7 @@ import net.jtorol.dao.BoardDAO;
 import net.jtorol.dao.UserDAO;
 import net.jtorol.domain.BoardVO;
 import net.jtorol.domain.Criteria;
+import net.jtorol.domain.SearchCriteria;
 import net.jtorol.domain.UserVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -66,7 +67,7 @@ public class BoardDAOTest {
 
 	@Test
 	public void testListPage() throws Exception {
-		Criteria cri = new Criteria();
+		SearchCriteria cri = new SearchCriteria();
 
 		cri.setPage(2);
 		cri.setPerPageNum(15);

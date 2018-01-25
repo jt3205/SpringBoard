@@ -11,6 +11,7 @@
 	name='viewport'>
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <script src="/resources/js/jquery-3.3.1.js"></script>
+<script src="/resources/js/popper.js"></script>
 <script src="/resources/js/bootstrap.min.js"></script>
 </head>
 <body>

@@ -73,7 +73,31 @@ public class PageMaker {
 	public int getTotalCount() {
 		return totalCount;
 	}
-
+	
+	public String makeQuery(int page) {
+		String result = "/" + page;
+		
+		if(cri.getPerPageNum() != 10) {
+			result += "/" + cri.getPerPageNum();
+		}
+		
+		return result;
+	}
+	
+	public String makeSearch(int page) {
+		String result = makeQuery(page);
+		String searchType = ((SearchCriteria)cri).getSearchType();
+		String keyword = ((SearchCriteria)cri).getKeyword();
+		
+		if(searchType != null) {
+			result += "?searchType=" + searchType;
+		}
+		if(keyword != null) {
+			result += "&keyword=" + keyword;
+		}
+		return result;
+	}
+	
 	@Override
 	public String toString() {
 		return "PageMaker [totalCount=" + totalCount + ", startPage=" + startPage + ", endPage=" + endPage + ", prev="

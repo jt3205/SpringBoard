@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import net.jtorol.domain.BoardVO;
 import net.jtorol.domain.Criteria;
+import net.jtorol.domain.SearchCriteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -43,8 +44,12 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> listPage(Criteria cri) throws Exception {
+	public List<BoardVO> listPage(SearchCriteria cri) throws Exception {
 		return session.selectList(namespace + ".listPage", cri);
 	}
-
+	
+	@Override
+	public int countBoard(SearchCriteria cri) throws Exception {
+		return session.selectOne(namespace + ".countBoard", cri);
+	}
 }

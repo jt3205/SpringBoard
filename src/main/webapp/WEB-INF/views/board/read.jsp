@@ -35,9 +35,9 @@
 	</div>
 	<div class="row mt-2">
 		<div class="col-11 text-right">
-			<a href="/board/modify/${board.bno}" class="btn btn-warning">수정</a>
-			<a href="/board/remove/${board.bno}" class="btn btn-danger">삭제</a>
-			<a href="/board/list/${board.bno}" class="btn btn-primary">목록보기</a>
+			<a href="/board/modify/${board.bno}/${cri.page}/${cri.perPageNum}?searchType=${cri.searchType}&keyword=${cri.keyword}" class="btn btn-warning">수정</a>
+			<a href="/board/remove/${board.bno}/${cri.page}/${cri.perPageNum}?searchType=${cri.searchType}&keyword=${cri.keyword}" class="btn btn-danger">삭제</a>
+			<a href="/board/list/${cri.page}/${cri.perPageNum}?searchType=${cri.searchType}&keyword=${cri.keyword}" class="btn btn-primary">목록보기</a>
 		</div>
 	</div>
 </div>

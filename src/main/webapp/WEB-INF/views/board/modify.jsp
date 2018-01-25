@@ -7,7 +7,11 @@
 <div class="container mt-2">
 	<div class="row">
 		<div class="col-10 offset-1">
-			<form method="post">
+			<form method="post" action="/board/modify/${board.bno}">
+				<input type="hidden" name="page" value="${cri.page}"/>
+				<input type="hidden" name="perPageNum" value="${cri.perPageNum}"/>
+				<input type="hidden" name="searchType" value="${cri.searchType}"/>
+				<input type="hidden" name="keyword" value="${cri.keyword}"/>
 				<div class="form-group row">
 					<label for="writer" class="col-md-2 col-form-label" readonly>
 						작성자
@@ -33,7 +37,7 @@
 				</div>
 				<div class="row mt-3">
 					<div class="col-11 text-right">
-						<button type="button" class="btn btn-primary" id="save">작성완료</button>
+						<button type="submit" class="btn btn-primary" id="save">작성완료</button>
 						<button type="button" class="btn btn-warning" id="cancel">취소</button>
 					</div>
 				</div>
@@ -47,6 +51,6 @@
 
 <script>
 	$("#cancle").on("click", function() {
-		self.location = "/board/list";
+		history.back();
 	});
 </script>
