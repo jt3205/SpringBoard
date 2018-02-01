@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!Doctype html>
 <html>
 <head>
@@ -31,14 +31,26 @@
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="/board/list">게시판</a>
 				</li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> 로그인 </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">로그인</a> <a class="dropdown-item"
-							href="#">회원가입</a>
-					</div></li>
+				<li class="nav-item dropdown">
+					<c:if test="${empty login }">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> 로그인 </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="/user/login">로그인</a> 
+							<a class="dropdown-item" href="#">회원가입</a>
+						</div>
+					</c:if>
+					<c:if test="${not empty login}">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> ${ login.uname } 님</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">회원정보</a>
+							<a class="dropdown-item" href="/user/logout">로그아웃</a>
+						</div>
+					</c:if>
+				</li>
 			</ul>
 		</div>
 	</nav>

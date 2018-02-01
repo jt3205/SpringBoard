@@ -21,5 +21,21 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="net.jtorol.controller" />
+	<context:component-scan base-package="net.gondr.controller" />
+	
+	<beans:bean id="loginInterceptor" class="net.gondr.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="authInterceptor" class="net.gondr.interceptor.AuthInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/user/loginPost"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/board/register"/>
+			<mapping path="/board/modify/**"/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+	</interceptors>
 </beans:beans>

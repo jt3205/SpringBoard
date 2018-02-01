@@ -5,6 +5,6 @@
 
 <configuration>
 	<typeAliases>
-		<package name="net.jtorol.domain"/>
+		<package name="net.gondr.domain"/>
 	</typeAliases>
 </configuration>

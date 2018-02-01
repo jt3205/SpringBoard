@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="include/header.jsp"%>
+    pageEncoding="UTF-8"%>
+<%@ include file="include/header.jsp" %>
 
 <div class="container">
 	<div class="row">
@@ -14,7 +14,7 @@
 				</div>
 				<div class="card-footer">
 					<a href="javascript:history.back()" class="btn btn-success">
-					
+						돌아가기
 					</a>
 				</div>
 			</div>
@@ -22,4 +22,5 @@
 	</div>
 </div>
 
-<%@ include file="include/footer.jsp"%>
+
+<%@ include file="include/footer.jsp" %>

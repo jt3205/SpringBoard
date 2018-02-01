@@ -1,86 +1,100 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="net.jtorol.mapper.BoardMapper">
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="net.gondr.mapper.BoardMapper">
 	<insert id="create">
-		insert into tbl_board(title, content, writer) values (#{title}, #{content}, #{writer})
+		INSERT INTO tbl_board(title, content, writer) 
+		VALUES (#{title}, #{content}, #{writer}) 
 	</insert>
 	
 	<select id="read" resultMap="boardMap">
-		select bno, title, content, writer, regdate, viewcnt from tbl_board where bno = #{bno}
+		SELECT bno, title, content, writer, regdate, viewcnt
+		FROM tbl_board
+		WHERE bno = #{bno}
 	</select>
 	
 	<resultMap type="BoardVO" id="boardMap">
-		<result property="bno" column="bno"/>
-		<result property="title" column="title"/>
-		<result property="content" column="content"/>
-		<result property="writer" column="writer"/>
-		<result property="regdate" column="regdate"/>
-		<result property="viewcnt" column="viewcnt"/>
+		<result property="bno" column ="bno"></result>
+		<result property="title" column ="title"></result>
+		<result property="content" column ="content"></result>
+		<result property="writer" column ="writer"></result>
+		<result property="regdate" column ="regdate"></result>
+		<result property="viewcnt" column ="viewcnt"></result>
 	</resultMap>
 	
 	<update id="update">
-		update tbl_board set title = #{title}, content = #{content}
-		where bno = #{bno}
+		UPDATE tbl_board SET title = #{title}, content = #{content}
+		WHERE bno = #{bno}
 	</update>
 	
 	<delete id="delete">
-		delete from tbl_board where bno = #{bno}
+		DELETE FROM tbl_board WHERE bno = #{bno}
 	</delete>
 	
 	<sql id="search">
 		<if test="searchType != null">
 			<if test="searchType == 't'.toString()">
-				And title like CONCAT('%', #{keyword}, '%')
+				AND title like CONCAT('%', #{keyword}, '%')
 			</if>
+			
 			<if test="searchType == 'c'.toString()">
-				And content like CONCAT('%', #{keyword}, '%')
+				AND content like CONCAT('%', #{keyword}, '%')
 			</if>
+			
 			<if test="searchType == 'w'.toString()">
-				And writer like CONCAT('%', #{keyword}, '%')
+				AND writer like CONCAT('%', #{keyword}, '%')
 			</if>
+			
 			<if test="searchType == 'tc'.toString()">
-				And (title like CONCAT('%', #{keyword}, '%') 
-				OR content like CONCAT('%', #{keyword}, '%'))
-			</if>
-			<if test="searchType == 'cw'.toString()">
-				And (writer like CONCAT('%', #{keyword}, '%') 
-				OR content like CONCAT('%', #{keyword}, '%'))
+				AND (
+				 title like CONCAT('%', #{keyword}, '%') 
+				 OR content like CONCAT('%', #{keyword}, '%')
+				)
 			</if>
 			
 			<if test="searchType == 'cw'.toString()">
-				And (title like CONCAT('%', #{keyword}, '%') 
-				OR writer like CONCAT('%', #{keyword}, '%') 
-				OR content like CONCAT('%', #{keyword}, '%'))
+				AND (
+				 content like CONCAT('%', #{keyword}, '%') 
+				 OR writer like CONCAT('%', #{keyword}, '%')
+				)
+			</if>
+			
+			<if test="searchType == 'tcw'.toString()">
+				AND (
+				 title like CONCAT('%', #{keyword}, '%')
+				 OR content like CONCAT('%', #{keyword}, '%') 
+				 OR writer like CONCAT('%', #{keyword}, '%')
+				)
 			</if>
 		</if>
 	</sql>
 	
 	<select id="listAll" resultMap="boardMap">
 		<![CDATA[
-			select bno, title, content, writer, regdate, viewcnt
-			from tbl_board where bno > 0
-			order by bno desc
+			SELECT bno, title, content, writer, regdate, viewcnt
+			FROM tbl_board WHERE bno > 0
+			ORDER BY bno DESC
 		]]>
 	</select>
 	
 	<select id="listPage" resultMap="boardMap">
 		<![CDATA[
-			select bno, title, content, writer, regdate, viewcnt
-			from tbl_board where bno > 0
+			SELECT bno, title, content, writer, regdate, viewcnt
+			FROM tbl_board WHERE bno > 0
 		]]>
 			<include refid="search"></include>
 		<![CDATA[
-			order by bno desc
-			limit #{pageStart}, #{perPageNum}
+			ORDER BY bno DESC
+			LIMIT #{pageStart}, #{perPageNum}
 		]]>
 	</select>
 	
 	<select id="countBoard" resultType="int">
-	<![CDATA[
-		SELECT count(bno) from tbl_board
-		where bno > 0
-	]]>
-	<include refid="search"></include>
+		<![CDATA[
+			SELECT count(bno) FROM tbl_board
+			WHERE bno > 0
+		]]>
+		<include refid="search"></include>
 	</select>
 </mapper>
